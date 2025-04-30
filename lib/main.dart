@@ -73,123 +73,124 @@ class MyApp extends StatelessWidget {
                         begin: Alignment.bottomCenter,
                         end: Alignment.topCenter,
                         colors: [
-                          Colors.black.withOpacity(0.9), // más oscuro abajo
                           Colors.black.withOpacity(1), // más oscuro abajo
+                          Colors.black.withOpacity(0.8), // más oscuro abajo
                           Colors.transparent, // se difumina hacia arriba
                         ],
                       ),
                     ),
                   ),
                 ),
-              ],
-            ),
-
-            // Contenido principal
-            Positioned(
-              top: 400, // Ajusta la posición del contenido
-              left: 0,
-              right: 0,
-              child: Stack(
-                children: [
-                  // Imagen de fondo
-                  Positioned(
-                       top: 0, // Ajusta la posición del contenido
-                            left: -80,
-                            right: -110,
-                    child: Image.asset(
-                      'assets/images/fondo_lineas.png', // Reemplaza con la ruta de tu imagen
-                      
-                    ),
-                  ),
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
+                Positioned(
+                  top: 610, // Ajusta la posición del contenido
+                  left: 0,
+                  right: 0,
+                  child: Stack(
                     children: [
-                      // Texto principal
-                      Container(
-                        width: 320,
-                        child: Text(
-                          'Vive la transformación digital',
-                          style: TextStyle(
-                            fontSize: 32,
-              
-                            fontFamily: 'NBInternationalPro',
-                            color: Colors
-                                .white, // Asegúrate de que el texto sea legible
-                          ),
-                          textAlign: TextAlign.center,
+                      // Imagen de fondo
+                      Positioned(
+                        top: 0, // Ajusta la posición del contenido
+                        left: -80,
+                        right: -110,
+                        child: Image.asset(
+                          'assets/images/fondo_lineas.png', // Reemplaza con la ruta de tu imagen
                         ),
                       ),
-                      SizedBox(height: 16),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 20),
-                        child: Text(
-                          '¿Tienes una idea innovadora o una necesidad específica que no puede ser cubierta por aplicaciones estándar?',
-                          style: TextStyle(
-                            fontSize: 14,
-                            fontFamily: 'NBInternationalPro',
-                            color: Colors
-                                .white, // Asegúrate de que el texto sea legible
-                          ),
-                          textAlign: TextAlign.center,
-                        ),
-                      ),
-                      SizedBox(height: 32),
-              
-                      // Botones
-                      Row(
+                      Column(
                         mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
+                          // Texto principal
                           Container(
-                            height: 52,
-                            child: ElevatedButton(
-                              style: ElevatedButton.styleFrom(
-                                backgroundColor:
-                                    Colors.white, // Fondo transparente
-                                foregroundColor: Colors.black, // Texto negro
-                                side: BorderSide(
-                                    color: Colors.white,
-                                    width: 2), // Borde blanco
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(5),
-                                ),
+                            width: 320,
+                            child: Text(
+                              'Vive la transformación digital',
+                              style: TextStyle(
+                                fontSize: 32,
+
+                                fontFamily: 'NBInternationalPro',
+                                color: Colors
+                                    .white, // Asegúrate de que el texto sea legible
                               ),
-                              onPressed: () {
-                                // Funcionalidad para el primer botón
-                              },
-                              child: Text(
-                                'Agenda una llamada',
-                                style: TextStyle(
-                                    color: Colors.black), // Texto negro
-                              ),
+                              textAlign: TextAlign.center,
                             ),
                           ),
-                          SizedBox(width: 16),
-                          Container(
-                            height: 52,
-                            child: TextButton(
-                              style: TextButton.styleFrom(
-                                foregroundColor: Colors.white, // Texto blanco
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(5),
-                                  side: BorderSide(
-                                      color: Colors.white,
-                                      width: 2), // Borde blanco
+                          SizedBox(height: 16),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 20),
+                            child: Text(
+                              '¿Tienes una idea innovadora o una necesidad específica que no puede ser cubierta por aplicaciones estándar?',
+                              style: TextStyle(
+                                fontSize: 14,
+                                fontFamily: 'NBInternationalPro',
+                                color: Colors
+                                    .white, // Asegúrate de que el texto sea legible
+                              ),
+                              textAlign: TextAlign.center,
+                            ),
+                          ),
+                          SizedBox(height: 32),
+
+                          // Botones
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Container(
+                                height: 52,
+                                child: ElevatedButton(
+                                  style: ElevatedButton.styleFrom(
+                                    backgroundColor:
+                                        Colors.white, // Fondo transparente
+                                    foregroundColor:
+                                        Colors.black, // Texto negro
+                                    side: BorderSide(
+                                        color: Colors.white,
+                                        width: 2), // Borde blanco
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(5),
+                                    ),
+                                  ),
+                                  onPressed: () {
+                                    // Funcionalidad para el primer botón
+                                  },
+                                  child: Text(
+                                    'Agenda una llamada',
+                                    style: TextStyle(
+                                        color: Colors.black), // Texto negro
+                                  ),
                                 ),
                               ),
-                              onPressed: () {
-                                // Funcionalidad para el segundo botón
-                              },
-                              child: Text('Ver Portafolio'),
-                            ),
+                              SizedBox(width: 16),
+                              Container(
+                                height: 52,
+                                child: TextButton(
+                                  style: TextButton.styleFrom(
+                                    foregroundColor:
+                                        Colors.white, // Texto blanco
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(5),
+                                      side: BorderSide(
+                                          color: Colors.white,
+                                          width: 2), // Borde blanco
+                                    ),
+                                  ),
+                                  onPressed: () {
+                                    // Funcionalidad para el segundo botón
+                                  },
+                                  child: Text('Ver Portafolio'),
+                                ),
+                              ),
+                            ],
                           ),
                         ],
                       ),
                     ],
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
+
+            // Contenido principal
           ],
         ),
       ),
