@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'dart:math';
 
+import 'package:url_launcher/url_launcher.dart';
+
 void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
@@ -21,46 +23,51 @@ class MyApp extends StatelessWidget {
       home: Scaffold(
         backgroundColor: Colors
             .black, // Set the background color of the entire screen to black
-        body: Stack(
-          children: [
-            Positioned(
-              top: -270,
-              right: 0,
-              child: Transform(
-                alignment: Alignment.center,
-                transform: Matrix4.rotationZ(pi), // volteo horizontal
-                child: Image.asset(
-                  'assets/images/fondo_naranja.png',
-                  width: 600,
-                  fit: BoxFit.contain,
-                ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    'NPT Solutions',
-                    style: TextStyle(
-                      fontSize: 23,
-                      fontFamily: 'NBInternationalPro',
-                      color:
-                          Colors.white, // Asegúrate de que el texto sea legible
-                    ),
-                    textAlign: TextAlign.center,
-                  ),
-                  Icon(
-                    Icons.menu,
-                    color: Colors.white,
-                  )
-                ],
-              ),
-            ),
-            Stack(
+        body: SingleChildScrollView(
+          child: Container(
+            height: 1000, // o el tamaño que necesites
+            child: Stack(
               children: [
-                Positioned.fill(
+                Positioned(
+                  top: -270,
+                  right: 0,
+                  child: Transform(
+                    alignment: Alignment.center,
+                    transform: Matrix4.rotationZ(pi), // volteo horizontal
+                    child: Image.asset(
+                      'assets/images/fondo_naranja.png',
+                      width: 600,
+                      fit: BoxFit.contain,
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        'NPT Solutions',
+                        style: TextStyle(
+                          fontSize: 23,
+                          fontFamily: 'NBInternationalPro',
+                          color: Colors
+                              .white, // Asegúrate de que el texto sea legible
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                      Icon(
+                        Icons.menu,
+                        color: Colors.white,
+                      )
+                    ],
+                  ),
+                ),
+                Positioned(
+                  top: 100, // Ajusta este valor para moverla hacia arriba
+                  left: 0,
+                  right: 0,
                   child: Image.asset(
                     'assets/images/fondo_celulares.png',
                     width: 300,
@@ -73,8 +80,9 @@ class MyApp extends StatelessWidget {
                         begin: Alignment.bottomCenter,
                         end: Alignment.topCenter,
                         colors: [
+                          Colors.black.withOpacity(1),
                           Colors.black.withOpacity(1), // más oscuro abajo
-                          Colors.black.withOpacity(0.8), // más oscuro abajo
+                          Colors.black.withOpacity(1), // más oscuro abajo
                           Colors.transparent, // se difumina hacia arriba
                         ],
                       ),
@@ -82,7 +90,7 @@ class MyApp extends StatelessWidget {
                   ),
                 ),
                 Positioned(
-                  top: 610, // Ajusta la posición del contenido
+                  top: 480, // Ajusta la posición del contenido
                   left: 0,
                   right: 0,
                   child: Stack(
@@ -150,8 +158,19 @@ class MyApp extends StatelessWidget {
                                       borderRadius: BorderRadius.circular(5),
                                     ),
                                   ),
-                                  onPressed: () {
-                                    // Funcionalidad para el primer botón
+                                  onPressed: () async {
+                                    final phoneNumber = '972696048';
+                                    final message = Uri.encodeComponent(
+                                        "Hola, quiero agendar una llamada");
+                                    final whatsappUrl = Uri.parse(
+                                        "https://wa.me/51$phoneNumber?text=$message");
+
+                                    if (await canLaunchUrl(whatsappUrl)) {
+                                      await launchUrl(whatsappUrl,
+                                          mode: LaunchMode.externalApplication);
+                                    } else {
+                                      throw 'No se pudo abrir WhatsApp';
+                                    }
                                   },
                                   child: Text(
                                     'Agenda una llamada',
@@ -187,11 +206,16 @@ class MyApp extends StatelessWidget {
                     ],
                   ),
                 ),
+                // Stack(
+                //   children: [
+
+                //   ],
+                // ),
+
+                // Contenido principal
               ],
             ),
-
-            // Contenido principal
-          ],
+          ),
         ),
       ),
     );
