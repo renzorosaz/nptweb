@@ -35,7 +35,7 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.8
-
+  carousel_slider: ^4.2.1 # Use the latest version
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -63,20 +63,24 @@ flutter:
   - assets/images/fondo_celulares.png
   - assets/images/fondo_naranja.png
   - assets/images/fondo_lineas.png
-  #   - images/a_dot_ham.jpeg
+  - assets/images/apps.png
+  - assets/logos/kal.png
+  - assets/logos/miski.png
+  - assets/logos/open.png
+  - assets/logos/stef.png
+  - assets/icons/op1.png
+  - assets/icons/op2.png
+  - assets/icons/op3.png
+  - assets/icons/op4.png
+  - assets/icons/op5.png
+  - assets/fonts/head/
+  - assets/fonts/body/
 
-  # An image asset can refer to one or more resolution-specific "variants", see
-  # https://flutter.dev/to/resolution-aware-images
-
-  # For details regarding adding assets from package dependencies, see
-  # https://flutter.dev/to/asset-from-package
-
-  # To add custom fonts to your application, add a fonts section here,
-  # in this "flutter" section. Each entry in this list should have a
-  # "family" key with the font family name, and a "fonts" key with a
-  # list giving the asset and other descriptors for the font. For
-  # example:
   fonts:
+    - family: PPNeueMachina
+      fonts:
+        - asset: assets/fonts/head/PPNeueMachina-PlainRegular.otf
+
     - family: NBInternationalPro
       fonts:
         - asset: assets/fonts/body/NBInternationalProLig.ttf
@@ -101,6 +105,3 @@ flutter:
         - asset: assets/fonts/head/PPGoshaSans-Regular.otf
         - asset: assets/fonts/head/PPGoshaSans-Bold.otf
           weight: 700
-        # Agrega las demás fuentes del grupo 'head' aquí
-  # For details regarding fonts from package dependencies,
-  # see https://flutter.dev/to/font-from-package
