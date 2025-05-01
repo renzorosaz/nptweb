@@ -73,6 +73,10 @@ flutter:
   - assets/icons/op3.png
   - assets/icons/op4.png
   - assets/icons/op5.png
+  - assets/icons/risk.png
+  - assets/icons/apps.png
+  - assets/icons/ia.png
+  - assets/icons/cons.png
   - assets/fonts/head/
   - assets/fonts/body/
 

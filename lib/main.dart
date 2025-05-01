@@ -12,15 +12,35 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  final PageController _pageController = PageController(viewportFraction: 0.8);
-  // int _currentPage = 0;
-  // double _dragStartX = 0;
-  // double _dragOffset = 0;
+  final PageController _pageController = PageController(viewportFraction: 0.85);
+  int _currentIndex = 0;
+
   final logos = [
     'assets/logos/open.png',
     'assets/logos/stef.png',
     'assets/logos/kal.png',
     'assets/logos/miski.png',
+  ];
+
+  final testimonials = [
+    {
+      'name': 'Miskimayo',
+      'position': 'Cliente de desarrollo MVP iOS',
+      'testimonial':
+          '"Trabajamos con ellos en el desarrollo de una app para nuestra empresa minera de fosfato. Supieron adaptarse a los requerimientos de una operación compleja, y lograron digitalizar procesos clave con una solución eficiente y escalable."',
+    },
+    {
+      'name': 'Kallpa',
+      'position': 'Proyecto móvil iOS y Android',
+      'testimonial':
+          '"Colaboramos en una solución móvil para una de nuestras divisiones de energía. Destacamos su rapidez, calidad técnica y comprensión del sector. Nos entregaron una app sólida y alineada con nuestros objetivos operativos."',
+    },
+    {
+      'name': 'Openmed',
+      'position': 'Validación de MVP y mercado',
+      'testimonial':
+          '"Como empresa distribuidora de medicamentos, necesitábamos validar un nuevo modelo digital. Con su ayuda, creamos un marketplace funcional que nos permitió testear y validar la demanda en tiempo récord."',
+    },
   ];
   // final List<Widget> _slides = [
   //   // Replace with your actual slide widgets
@@ -88,7 +108,7 @@ class _MyAppState extends State<MyApp> {
             .black, // Set the background color of the entire screen to black
         body: SingleChildScrollView(
           child: Container(
-            height: 3180, // o el tamaño que necesites
+            height: 4400, // o el tamaño que necesites
             child: Stack(children: [
               Positioned(
                 top: -270,
@@ -923,6 +943,224 @@ class _MyAppState extends State<MyApp> {
                   ),
                 ),
               ),
+
+              Positioned(
+                top: 2790, // Ajusta la posición del contenido
+                left: 40,
+                right: 40,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    // Fila superior con 2 contenedores
+                    Container(
+                      width: 320,
+                      child: ShaderMask(
+                        shaderCallback: (bounds) => LinearGradient(
+                          colors: [Colors.white, Colors.grey],
+                          begin: Alignment.centerLeft,
+                          end: Alignment.centerRight,
+                        ).createShader(bounds),
+                        child: Text(
+                          'Nuestros servicios',
+                          style: TextStyle(
+                            fontSize: 28,
+                            fontFamily: 'NBInternationalPro',
+                            fontWeight: FontWeight.w900, // Ultrabold
+                            color: Colors
+                                .white, // Asegúrate de que el texto sea legible
+                          ),
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        // Contenedor 1
+                        Container(
+                          width: 200,
+                          height: 260,
+                          padding: EdgeInsets.all(10),
+                          decoration: BoxDecoration(
+                            color: Colors.white10,
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Image.asset("assets/icons/risk.png"),
+                              ShaderMask(
+                                shaderCallback: (bounds) => LinearGradient(
+                                  colors: [Colors.white, Colors.grey],
+                                  begin: Alignment.centerLeft,
+                                  end: Alignment.centerRight,
+                                ).createShader(bounds),
+                                child: Text(
+                                  'Soluciones Webs',
+                                  style: TextStyle(
+                                      fontSize: 16,
+                                      color: Colors.white,
+                                      fontFamily: 'NBInternationalPro',
+                                      fontWeight: FontWeight.bold),
+                                ),
+                              ),
+                              SizedBox(height: 8),
+                              Text(
+                                  'Comprendemos la necesidad de tu negocio, aportamos ideas y desarrollamos tu web ideal',
+                                  style: TextStyle(
+                                    fontSize: 14,
+                                    color: Colors.white,
+                                    fontFamily: 'NBInternationalPro',
+                                  )),
+                            ],
+                          ),
+                        ),
+                        // Contenedor 2
+                        Container(
+                          width: 200,
+                          height: 260,
+                          padding: EdgeInsets.all(10),
+                          decoration: BoxDecoration(
+                            color: Colors.white10,
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Image.asset("assets/icons/apps.png"),
+                              ShaderMask(
+                                shaderCallback: (bounds) => LinearGradient(
+                                  colors: [Colors.white, Colors.grey],
+                                  begin: Alignment.centerLeft,
+                                  end: Alignment.centerRight,
+                                ).createShader(bounds),
+                                child: Container(
+                                  width: 120,
+                                  child: Text(
+                                    'Aplicaciones Android & iOS',
+                                    style: TextStyle(
+                                        fontSize: 16,
+                                        color: Colors.white,
+                                        fontFamily: 'NBInternationalPro',
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                ),
+                              ),
+                              SizedBox(height: 8),
+                              Text(
+                                  'Una app ideal para tus clientes, una experiencia para fidelizar a tus clientes',
+                                  style: TextStyle(
+                                    fontSize: 14,
+                                    color: Colors.white,
+                                    fontFamily: 'NBInternationalPro',
+                                  )),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(height: 16), // Espacio entre filas
+                    // Fila inferior con 2 contenedores
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        // Contenedor 3
+                        Container(
+                          width: 200,
+                          height: 260,
+                          padding: EdgeInsets.all(10),
+                          decoration: BoxDecoration(
+                            color: Colors.white10,
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Image.asset("assets/icons/cons.png"),
+                              ShaderMask(
+                                shaderCallback: (bounds) => LinearGradient(
+                                  colors: [Colors.white, Colors.grey],
+                                  begin: Alignment.centerLeft,
+                                  end: Alignment.centerRight,
+                                ).createShader(bounds),
+                                child: Container(
+                                  width: 120,
+                                  child: Text(
+                                    'Consultoría de innovación para empresas',
+                                    style: TextStyle(
+                                        fontSize: 16,
+                                        color: Colors.white,
+                                        fontFamily: 'NBInternationalPro',
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                ),
+                              ),
+                              SizedBox(height: 8),
+                              Text(
+                                  '¿No sabes por donde empezar? Te ayudamos a canalizar tus esfuerzos y ahorrar tiempo para el desarrollo de tu MVP',
+                                  style: TextStyle(
+                                    fontSize: 14,
+                                    color: Colors.white,
+                                    fontFamily: 'NBInternationalPro',
+                                  )),
+                            ],
+                          ),
+                        ),
+                        // Contenedor 4
+                        Container(
+                          width: 200,
+                          height: 260,
+                          padding: EdgeInsets.all(10),
+                          decoration: BoxDecoration(
+                            color: Colors.white10,
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Image.asset("assets/icons/ia.png"),
+                              ShaderMask(
+                                shaderCallback: (bounds) => LinearGradient(
+                                  colors: [Colors.white, Colors.grey],
+                                  begin: Alignment.centerLeft,
+                                  end: Alignment.centerRight,
+                                ).createShader(bounds),
+                                child: Container(
+                                  width: 120,
+                                  child: Text(
+                                    'IA Generativa',
+                                    style: TextStyle(
+                                        fontSize: 16,
+                                        color: Colors.white,
+                                        fontFamily: 'NBInternationalPro',
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                ),
+                              ),
+                              SizedBox(height: 8),
+                              Text(
+                                  'Integramos soluciones de IA generativa para potenciar la creatividad y la personalización en tus procesos.',
+                                  style: TextStyle(
+                                    fontSize: 14,
+                                    color: Colors.white,
+                                    fontFamily: 'NBInternationalPro',
+                                  )),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
               //FIN DE LISTA DE PASOS
               // GestureDetector(
               //   onHorizontalDragStart: (details) {
@@ -1011,14 +1249,123 @@ class _MyAppState extends State<MyApp> {
               //     ],
               //   ),
               // )
-           
-
+              Positioned(
+                top: 3500,
+                left: 20,
+                right: 20,
+                child: Column(
+                  children: [
+                    Container(
+                      width: 320,
+                      child: ShaderMask(
+                        shaderCallback: (bounds) => LinearGradient(
+                          colors: [Colors.white, Colors.grey],
+                          begin: Alignment.centerLeft,
+                          end: Alignment.centerRight,
+                        ).createShader(bounds),
+                        child: Text(
+                          'Recomendado por nuestros clientes',
+                          style: TextStyle(
+                            fontSize: 28,
+                            fontFamily: 'NBInternationalPro',
+                            fontWeight: FontWeight.w900, // Ultrabold
+                            color: Colors
+                                .white, // Asegúrate de que el texto sea legible
+                          ),
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: 16),
+                    SizedBox(
+                      height: 220,
+                      child: PageView.builder(
+                        controller: _pageController,
+                        itemCount: testimonials.length,
+                        onPageChanged: (index) {
+                          setState(() => _currentIndex = index);
+                        },
+                        itemBuilder: (context, index) {
+                          final testimonial = testimonials[index];
+                          return Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 8),
+                            child: Container(
+                              padding: const EdgeInsets.all(16),
+                              decoration: BoxDecoration(
+                                color: const Color.fromARGB(255, 19, 20, 20),
+                                borderRadius: BorderRadius.circular(16),
+                              ),
+                              child: Column(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    testimonial['testimonial']!,
+                                    style: const TextStyle(
+                                      color: Colors.white60,
+                                      fontSize: 12,
+                                      fontFamily: 'NBInternationalPro',
+                                    ),
+                                  ),
+                                  const SizedBox(height: 16),
+                                  Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        testimonial['name'] ?? '',
+                                        style: const TextStyle(
+                                          color: Colors.white,
+                                          fontFamily: 'NBInternationalPro',
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                      Text(
+                                        testimonial['position'] ?? '',
+                                        style: const TextStyle(
+                                          color: Colors.white70,
+                                          fontFamily: 'NBInternationalPro',
+                                          fontSize: 12,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ),
+                          );
+                        },
+                      ),
+                    ),
+                    const SizedBox(height: 12),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: List.generate(
+                        testimonials.length,
+                        (index) => AnimatedContainer(
+                          duration: const Duration(milliseconds: 300),
+                          margin: const EdgeInsets.symmetric(horizontal: 6),
+                          width: _currentIndex == index ? 18 : 8,
+                          height: 8,
+                          decoration: BoxDecoration(
+                            color: _currentIndex == index
+                                ? Colors.grey
+                                : Colors.grey[600],
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
               Stack(children: [
                 // ... otros widgets principales de la pantalla
 
                 // Pie de página
                 Positioned(
-                  top: 2800,
+                  top: 3900,
                   left: 40,
                   right: 40,
                   child: Container(
@@ -1031,7 +1378,7 @@ class _MyAppState extends State<MyApp> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         // Logo o título
-                           Divider(color: Colors.grey.shade700),
+                        Divider(color: Colors.grey.shade700),
                         Text(
                           'NPT Solutions',
                           style: TextStyle(
@@ -1056,26 +1403,30 @@ class _MyAppState extends State<MyApp> {
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                              Row(
+                            Row(
                               children: [
                                 Icon(Icons.location_on, color: Colors.white),
                                 const SizedBox(width: 8),
                                 Text(
                                   'San Borja, Lima, PERU',
-                                  style: TextStyle(
-                                      color: Colors.white, fontSize: 16),
+                               style: TextStyle(
+                                    fontFamily: 'NBInternationalPro',
+                                    color: Colors.white54,
+                                    fontSize: 12),
                                 ),
                               ],
                             ),
-                              const SizedBox(height: 12),
+                            const SizedBox(height: 12),
                             Row(
                               children: [
                                 Icon(Icons.person, color: Colors.white),
                                 const SizedBox(width: 8),
                                 Text(
                                   'Renzo Rosas',
-                                  style: TextStyle(
-                                      color: Colors.white, fontSize: 16),
+                                   style: TextStyle(
+                                    fontFamily: 'NBInternationalPro',
+                                    color: Colors.white54,
+                                    fontSize: 12),
                                 ),
                               ],
                             ),
@@ -1086,8 +1437,10 @@ class _MyAppState extends State<MyApp> {
                                 const SizedBox(width: 8),
                                 Text(
                                   '+51 972 696 048',
-                                  style: TextStyle(
-                                      color: Colors.white, fontSize: 16),
+                                   style: TextStyle(
+                                    fontFamily: 'NBInternationalPro',
+                                    color: Colors.white54,
+                                    fontSize: 12),
                                 ),
                               ],
                             ),
@@ -1099,7 +1452,9 @@ class _MyAppState extends State<MyApp> {
                                 Text(
                                   'nptlatamsolutions@gmail.com',
                                   style: TextStyle(
-                                      color: Colors.white, fontSize: 16),
+                                    fontFamily: 'NBInternationalPro',
+                                    color: Colors.white54,
+                                    fontSize: 12),
                                 ),
                               ],
                             ),
@@ -1107,16 +1462,96 @@ class _MyAppState extends State<MyApp> {
                         ),
 
                         const SizedBox(height: 20),
-
+                        Text(
+                          'Redes Sociales',
+                          style: TextStyle(
+                            fontSize: 14,
+                            color: Colors.white,
+                          ),
+                        ),
+                        const SizedBox(height: 5),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            GestureDetector(
+                              onTap: (){
+                                _launchLinkedIn(context);
+                              },
+                              child: Text(
+                                'LinkedIn',
+                                style: TextStyle(
+                                    fontFamily: 'NBInternationalPro',
+                                    color: Colors.white54,
+                                    fontSize: 12),
+                              ),
+                            ),
+                            const SizedBox(height: 5),
+                            GestureDetector(
+                               onTap: (){
+                                _launchInstagram(context);
+                              },
+                              child: Text(
+                                'Instagram',
+                                style: TextStyle(
+                                    fontFamily: 'NBInternationalPro',
+                                    color: Colors.white54,
+                                    fontSize: 12),
+                              ),
+                            ),
+                          ],
+                        ),
                         // // Derechos reservados
                         // Divider(color: Colors.grey.shade700),
-                        const SizedBox(height: 10),
-                        Text(
-                          'Made by NPT Solutions. Designed  By Angel Meza',
-                          style: TextStyle(
-                              fontSize: 12, color: Colors.grey.shade600),
+                        const SizedBox(height: 25),
+
+                        RichText(
+                          textAlign: TextAlign.start,
+                          text: TextSpan(
+                            style: const TextStyle(
+                              fontSize: 12,
+                              color: Colors.white,
+                              fontFamily:
+                                  'NBInternationalPro', // Replace if needed
+                            ),
+                            children: const [
+                              TextSpan(
+                                  text: 'Made by ',
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.w100,
+                                    color: Colors.white30,
+                                  )),
+                              TextSpan(
+                                text: 'NPT Solutions',
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              TextSpan(
+                                  text: '. Designed By ',
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.w100,
+                                    color: Colors.white30,
+                                  )),
+                              TextSpan(
+                                text: 'Angel Meza\n',
+                                style: TextStyle(fontWeight: FontWeight.w500),
+                              ),
+                              TextSpan(
+                                text: 'Privacy Policy',
+                                style: TextStyle(
+                                  decoration: TextDecoration.underline,
+                                ),
+                              ),
+                              TextSpan(text: '    '), // Spacer
+                              TextSpan(
+                                text: 'Terms of Service',
+                                style: TextStyle(
+                                  decoration: TextDecoration.underline,
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
-                        
                       ],
                     ),
                   ),
@@ -1131,14 +1566,25 @@ class _MyAppState extends State<MyApp> {
 }
 
 Future<void> _launchLinkedIn(BuildContext context) async {
-    const url = 'https://www.linkedin.com/in/your_linkedin_profile'; // Replace with your actual LinkedIn URL
-    final Uri uri = Uri.parse(url);
-    if (!await launchUrl(uri)) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('No se pudo abrir LinkedIn.')),
-      );
-    }
+  const url =
+      'https://www.linkedin.com/company/82621706/admin/dashboard/'; // Replace with your actual LinkedIn URL
+  final Uri uri = Uri.parse(url);
+  if (!await launchUrl(uri)) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(content: Text('No se pudo abrir LinkedIn.')),
+    );
   }
+}
+Future<void> _launchInstagram(BuildContext context) async {
+  const url = 'https://www.instagram.com/nptsolutions?igsh=czBlYW5scTBsbHp2'; // Reemplaza con tu URL real
+  final Uri uri = Uri.parse(url);
+  if (!await launchUrl(uri, mode: LaunchMode.externalApplication)) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(content: Text('No se pudo abrir Instagram.')),
+    );
+  }
+}
+
 
 Future<void> openWhatsApp(
     {required String phoneNumber,
