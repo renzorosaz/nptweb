@@ -427,7 +427,7 @@ class _MyAppState extends State<MyApp> {
                                 end: Alignment.centerRight,
                               ).createShader(bounds),
                               child: Text(
-                                'Nuestros etapas para construir',
+                                'Nuestras etapas para construir',
                                 style: TextStyle(
                                   fontSize: 32,
                                   fontFamily: 'NBInternationalPro',
@@ -946,13 +946,16 @@ class _MyAppState extends State<MyApp> {
 
               Positioned(
                 top: 2790, // Ajusta la posición del contenido
-                left: 40,
-                right: 40,
+                left: 0,
+                right: 0,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     // Fila superior con 2 contenedores
+                    SizedBox(
+                      height: 20,
+                    ),
                     Container(
                       width: 320,
                       child: ShaderMask(
@@ -982,7 +985,7 @@ class _MyAppState extends State<MyApp> {
                       children: [
                         // Contenedor 1
                         Container(
-                          width: 200,
+                          width: 180,
                           height: 260,
                           padding: EdgeInsets.all(10),
                           decoration: BoxDecoration(
@@ -1022,7 +1025,7 @@ class _MyAppState extends State<MyApp> {
                         ),
                         // Contenedor 2
                         Container(
-                          width: 200,
+                          width: 180,
                           height: 260,
                           padding: EdgeInsets.all(10),
                           decoration: BoxDecoration(
@@ -1072,7 +1075,7 @@ class _MyAppState extends State<MyApp> {
                       children: [
                         // Contenedor 3
                         Container(
-                          width: 200,
+                          width: 180,
                           height: 260,
                           padding: EdgeInsets.all(10),
                           decoration: BoxDecoration(
@@ -1115,7 +1118,7 @@ class _MyAppState extends State<MyApp> {
                         ),
                         // Contenedor 4
                         Container(
-                          width: 200,
+                          width: 180,
                           height: 260,
                           padding: EdgeInsets.all(10),
                           decoration: BoxDecoration(
@@ -1409,10 +1412,10 @@ class _MyAppState extends State<MyApp> {
                                 const SizedBox(width: 8),
                                 Text(
                                   'San Borja, Lima, PERU',
-                               style: TextStyle(
-                                    fontFamily: 'NBInternationalPro',
-                                    color: Colors.white54,
-                                    fontSize: 12),
+                                  style: TextStyle(
+                                      fontFamily: 'NBInternationalPro',
+                                      color: Colors.white54,
+                                      fontSize: 12),
                                 ),
                               ],
                             ),
@@ -1423,10 +1426,10 @@ class _MyAppState extends State<MyApp> {
                                 const SizedBox(width: 8),
                                 Text(
                                   'Renzo Rosas',
-                                   style: TextStyle(
-                                    fontFamily: 'NBInternationalPro',
-                                    color: Colors.white54,
-                                    fontSize: 12),
+                                  style: TextStyle(
+                                      fontFamily: 'NBInternationalPro',
+                                      color: Colors.white54,
+                                      fontSize: 12),
                                 ),
                               ],
                             ),
@@ -1437,10 +1440,10 @@ class _MyAppState extends State<MyApp> {
                                 const SizedBox(width: 8),
                                 Text(
                                   '+51 972 696 048',
-                                   style: TextStyle(
-                                    fontFamily: 'NBInternationalPro',
-                                    color: Colors.white54,
-                                    fontSize: 12),
+                                  style: TextStyle(
+                                      fontFamily: 'NBInternationalPro',
+                                      color: Colors.white54,
+                                      fontSize: 12),
                                 ),
                               ],
                             ),
@@ -1452,9 +1455,9 @@ class _MyAppState extends State<MyApp> {
                                 Text(
                                   'nptlatamsolutions@gmail.com',
                                   style: TextStyle(
-                                    fontFamily: 'NBInternationalPro',
-                                    color: Colors.white54,
-                                    fontSize: 12),
+                                      fontFamily: 'NBInternationalPro',
+                                      color: Colors.white54,
+                                      fontSize: 12),
                                 ),
                               ],
                             ),
@@ -1474,7 +1477,7 @@ class _MyAppState extends State<MyApp> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             GestureDetector(
-                              onTap: (){
+                              onTap: () {
                                 _launchLinkedIn(context);
                               },
                               child: Text(
@@ -1487,7 +1490,7 @@ class _MyAppState extends State<MyApp> {
                             ),
                             const SizedBox(height: 5),
                             GestureDetector(
-                               onTap: (){
+                              onTap: () {
                                 _launchInstagram(context);
                               },
                               child: Text(
@@ -1575,8 +1578,10 @@ Future<void> _launchLinkedIn(BuildContext context) async {
     );
   }
 }
+
 Future<void> _launchInstagram(BuildContext context) async {
-  const url = 'https://www.instagram.com/nptsolutions?igsh=czBlYW5scTBsbHp2'; // Reemplaza con tu URL real
+  const url =
+      'https://www.instagram.com/nptsolutions?igsh=czBlYW5scTBsbHp2'; // Reemplaza con tu URL real
   final Uri uri = Uri.parse(url);
   if (!await launchUrl(uri, mode: LaunchMode.externalApplication)) {
     ScaffoldMessenger.of(context).showSnackBar(
@@ -1584,7 +1589,6 @@ Future<void> _launchInstagram(BuildContext context) async {
     );
   }
 }
-
 
 Future<void> openWhatsApp(
     {required String phoneNumber,
