@@ -15,9 +15,12 @@ class _MyAppState extends State<MyApp> {
   final PageController _pageController = PageController(viewportFraction: 0.92);
   final PageController _pageControllerPortafolio =
       PageController(viewportFraction: 0.85);
+  final ScrollController _scrollController = ScrollController();
+  GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   int _currentIndex = 0;
   int _currentIndexPortafolio = 0;
+  final GlobalKey _portafolioKey = GlobalKey();
 
   final logos = [
     'assets/logos/open.png',
@@ -37,50 +40,57 @@ class _MyAppState extends State<MyApp> {
     {
       'imagen': 'assets/portafolio/aw_1.png',
       'titulo': 'GreenPlace - Catálogo Digital',
-      'descripcion': 'Aplicación móvil que permite a negocios mostrar su catálogo de productos de forma digital, ordenada y accesible desde cualquier dispositivo.',
+      'descripcion':
+          'Aplicación móvil que permite a negocios mostrar su catálogo de productos de forma digital, ordenada y accesible desde cualquier dispositivo.',
     },
     {
       'imagen': 'assets/portafolio/aw_2.png',
       'titulo': 'FuchiGol - Partidos Amistosos',
-      'descripcion': 'Plataforma móvil para conectar jugadores y organizar partidos de fútbol recreativo de forma rápida, geolocalizada y colaborativa.',
+      'descripcion':
+          'Plataforma móvil para conectar jugadores y organizar partidos de fútbol recreativo de forma rápida, geolocalizada y colaborativa.',
     },
     {
       'imagen': 'assets/portafolio/aw_3.png',
       'titulo': 'Rutus - Reservas de Excursiones',
-      'descripcion': 'App para la gestión de reservas de actividades turísticas y excursiones, con integración de pasarela de pago segura y confirmación automática.',
+      'descripcion':
+          'App para la gestión de reservas de actividades turísticas y excursiones, con integración de pasarela de pago segura y confirmación automática.',
     },
     {
       'imagen': 'assets/portafolio/aw_4.png',
       'titulo': 'Mi Negocio App',
-      'descripcion': 'Aplicación con geolocalización integrada para ayudar a emprendedores a gestionar sus negocios locales, promociones y presencia digital.',
+      'descripcion':
+          'Aplicación con geolocalización integrada para ayudar a emprendedores a gestionar sus negocios locales, promociones y presencia digital.',
     },
     {
       'imagen': 'assets/portafolio/aw_5.png',
       'titulo': 'Alerta de Métricas - Monitoreo Inteligente',
-      'descripcion': 'App de visualización de indicadores clave de negocio (KPIs) mediante gráficos dinámicos y alertas automáticas en tiempo real.',
+      'descripcion':
+          'App de visualización de indicadores clave de negocio (KPIs) mediante gráficos dinámicos y alertas automáticas en tiempo real.',
     },
     {
       'imagen': 'assets/portafolio/aw_6.png',
       'titulo': 'ERP Lite - Gestión Empresarial',
-      'descripcion': 'Aplicación ligera para pequeñas empresas, que permite controlar inventarios, ventas, finanzas y operaciones desde el celular',
+      'descripcion':
+          'Aplicación ligera para pequeñas empresas, que permite controlar inventarios, ventas, finanzas y operaciones desde el celular',
     },
     {
       'imagen': 'assets/portafolio/aw_7.png',
       'titulo': 'ReservApp - Sistema de Reservas',
-      'descripcion': 'Herramienta móvil diseñada para la gestión eficiente de reservas en negocios de servicios, como salones, clínicas o actividades recreativas.',
+      'descripcion':
+          'Herramienta móvil diseñada para la gestión eficiente de reservas en negocios de servicios, como salones, clínicas o actividades recreativas.',
     },
   ];
 
   final testimonials = [
     {
       'name': 'Miskimayo',
-      'position': 'Cliente de desarrollo MVP iOS',
+      'position': 'App móvil iOS',
       'testimonial':
           '"Trabajamos con ellos en el desarrollo de una app para nuestra empresa minera de fosfato. Supieron adaptarse a los requerimientos de una operación compleja, y lograron digitalizar procesos clave con una solución eficiente y escalable."',
     },
     {
       'name': 'Kallpa',
-      'position': 'Proyecto móvil iOS y Android',
+      'position': 'iOS y Android',
       'testimonial':
           '"Colaboramos en una solución móvil para una de nuestras divisiones de energía. Destacamos su rapidez, calidad técnica y comprensión del sector. Nos entregaron una app sólida y alineada con nuestros objetivos operativos."',
     },
@@ -95,6 +105,14 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    _pageController.dispose();
+    _pageControllerPortafolio.dispose();
+    _scrollController.dispose();
+    super.dispose();
   }
 
   @override
@@ -120,11 +138,111 @@ class _MyAppState extends State<MyApp> {
       title: 'NPT Solutions',
       debugShowCheckedModeBanner: false,
       home: Scaffold(
+        key: _scaffoldKey, // Asigna la clave aquí
+
+        appBar: AppBar(
+          backgroundColor: Colors.transparent, // ← Fondo transparente real
+          elevation: 0, // ← Sin sombra
+          automaticallyImplyLeading: false,
+          title: Container(
+            color: Colors.transparent, // ← Esto elimina el fondo negro
+
+            padding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  'NPT Solutions',
+                  style: TextStyle(
+                    fontSize: 23,
+                    fontFamily: 'NBInternationalPro',
+                    color: Colors.white,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+                IconButton(
+                  onPressed: () {
+                    _scaffoldKey.currentState?.openDrawer();
+                  },
+                  icon: Icon(
+                    Icons.menu,
+                    color: Colors.white,
+                  ),
+                )
+              ],
+            ),
+          ),
+        ),
+        drawer: Drawer(
+          child: ListView(
+            padding: EdgeInsets.zero,
+            children: <Widget>[
+              DrawerHeader(
+                decoration: BoxDecoration(
+                  color: Colors.black,
+                ),
+                child: Text(
+                  'NPT Solutions',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 24,
+                  ),
+                ),
+              ),
+              ListTile(
+                title: Text('Servicios'),
+                onTap: () {
+                  Navigator.of(_scaffoldKey.currentContext!)
+                      .pop(); // Use the _scaffoldKey context
+                  _scrollController.animateTo(
+                    2800,
+                    duration: Duration(milliseconds: 500),
+                    curve: Curves.easeInOut,
+                  );
+                },
+              ),
+              ListTile(
+                title: Text('Portafolios'),
+                onTap: () {
+                  Navigator.of(_scaffoldKey.currentContext!).pop();
+                  _scrollController.animateTo(
+                    3700,
+                    duration: Duration(milliseconds: 500),
+                    curve: Curves.easeInOut,
+                  );
+                },
+              ),
+              ListTile(
+                title: Text('Testimonios'),
+                onTap: () {
+                  Navigator.of(_scaffoldKey.currentContext!).pop();
+                  _scrollController.animateTo(
+                    4150,
+                    duration: Duration(milliseconds: 500),
+                    curve: Curves.easeInOut,
+                  );
+                },
+              ),
+              ListTile(
+                title: Text('Contacto'),
+                onTap: () {
+                  Navigator.of(_scaffoldKey.currentContext!).pop();
+                  _scrollController.animateTo(
+                    4800,
+                    duration: Duration(milliseconds: 500),
+                    curve: Curves.easeInOut,
+                  );
+                },
+              ),
+            ],
+          ),
+        ),
         backgroundColor: Colors
             .black, // Set the background color of the entire screen to black
         body: SingleChildScrollView(
+          controller: _scrollController,
           child: Container(
-            height: 5400, // o el tamaño que necesites
+            height: 5200, // o el tamaño que necesites
             child: Stack(children: [
               Positioned(
                 top: -270,
@@ -139,29 +257,35 @@ class _MyAppState extends State<MyApp> {
                   ),
                 ),
               ),
-              Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      'NPT Solutions',
-                      style: TextStyle(
-                        fontSize: 23,
-                        fontFamily: 'NBInternationalPro',
-                        color: Colors
-                            .white, // Asegúrate de que el texto sea legible
-                      ),
-                      textAlign: TextAlign.center,
-                    ),
-                    Icon(
-                      Icons.menu,
-                      color: Colors.white,
-                    )
-                  ],
-                ),
-              ),
+              // Padding(
+              //   padding:
+              //       const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+              //   child: Row(
+              //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              //     children: [
+              //       Text(
+              //         'NPT Solutions',
+              //         style: TextStyle(
+              //           fontSize: 23,
+              //           fontFamily: 'NBInternationalPro',
+              //           color: Colors
+              //               .white, // Asegúrate de que el texto sea legible
+              //         ),
+              //         textAlign: TextAlign.center,
+              //       ),
+              //       IconButton(
+              //         onPressed: () {
+              //           _scaffoldKey.currentState
+              //               ?.openDrawer(); // Usamos la clave para abrir el drawer
+              //         },
+              //         icon: Icon(
+              //           Icons.menu,
+              //           color: Colors.white,
+              //         ),
+              //       )
+              //     ],
+              //   ),
+              // ),
               Positioned(
                 top: 100, // Ajusta este valor para moverla hacia arriba
                 left: 0,
@@ -283,7 +407,11 @@ class _MyAppState extends State<MyApp> {
                                   ),
                                 ),
                                 onPressed: () {
-                                  // Funcionalidad para el segundo botón
+                                  _scrollController.animateTo(
+                                    3750,
+                                    duration: Duration(milliseconds: 500),
+                                    curve: Curves.easeInOut,
+                                  );
                                 },
                                 child: Text(
                                   'Ver Portafolio',
@@ -607,7 +735,6 @@ class _MyAppState extends State<MyApp> {
                             "2",
                             style: TextStyle(
                               fontSize: 24,
-                              fontFamily: 'Lato',
                               color: Colors.white,
                               fontWeight: FontWeight.bold,
                             ),
@@ -753,7 +880,7 @@ class _MyAppState extends State<MyApp> {
                                         "Creamos una propuesta de solución a medida, diseñada para abordar tus necesidades específicas.",
                                         style: TextStyle(
                                           letterSpacing: 0.2,
-                                          fontSize: 16,
+                                          fontSize: 12,
                                           fontFamily: 'NBInternationalPro',
                                           color: const Color.fromARGB(
                                               255, 152, 152, 152),
@@ -942,7 +1069,7 @@ class _MyAppState extends State<MyApp> {
                 ),
               ),
               Positioned(
-                top: 2880, // Ajusta la posición del contenido
+                top: 2850, // Ajusta la posición del contenido
                 left: 0,
                 right: 0,
                 child: Column(
@@ -1011,9 +1138,9 @@ class _MyAppState extends State<MyApp> {
                               ),
                               SizedBox(height: 8),
                               Text(
-                                  'Comprendemos la necesidad de tu negocio, aportamos ideas y desarrollamos tu web ideal',
+                                  'Creamos soluciones web personalizadas que optimizan la experiencia de tus usuarios y potencian el crecimiento de tu empresa.',
                                   style: TextStyle(
-                                    fontSize: 14,
+                                    fontSize: 12,
                                     color: Colors.white,
                                     fontFamily: 'NBInternationalPro',
                                   )),
@@ -1054,9 +1181,9 @@ class _MyAppState extends State<MyApp> {
                               ),
                               SizedBox(height: 8),
                               Text(
-                                  'Una app ideal para tus clientes, una experiencia para fidelizar a tus clientes',
+                                  'Creamos apps móviles modernas con una sola base de código. Fideliza a tus clientes con una experiencia fluida, rápida y lista para publicar en tiendas.',
                                   style: TextStyle(
-                                    fontSize: 14,
+                                    fontSize: 12,
                                     color: Colors.white,
                                     fontFamily: 'NBInternationalPro',
                                   )),
@@ -1093,7 +1220,7 @@ class _MyAppState extends State<MyApp> {
                                 child: Container(
                                   width: 120,
                                   child: Text(
-                                    'Consultoría de innovación para empresas',
+                                    'Consultoria de innovación',
                                     style: TextStyle(
                                         fontSize: 16,
                                         color: Colors.white,
@@ -1104,9 +1231,9 @@ class _MyAppState extends State<MyApp> {
                               ),
                               SizedBox(height: 8),
                               Text(
-                                  '¿No sabes por donde empezar? Te ayudamos a canalizar tus esfuerzos y ahorrar tiempo para el desarrollo de tu MVP',
+                                  'Convertimos tus ideas en productos digitales, enfocándonos en lo que agrega valor y acelerando el desarrollo con metodologías ágiles.',
                                   style: TextStyle(
-                                    fontSize: 14,
+                                    fontSize: 12,
                                     color: Colors.white,
                                     fontFamily: 'NBInternationalPro',
                                   )),
@@ -1147,9 +1274,9 @@ class _MyAppState extends State<MyApp> {
                               ),
                               SizedBox(height: 8),
                               Text(
-                                  'Integramos soluciones de IA generativa para potenciar la creatividad y la personalización en tus procesos.',
+                                  'Integra soluciones de inteligencia artificial para personalizar la experiencia de tus usuarios y automatizar procesos clave que aumentan tu eficiencia',
                                   style: TextStyle(
-                                    fontSize: 14,
+                                    fontSize: 12,
                                     color: Colors.white,
                                     fontFamily: 'NBInternationalPro',
                                   )),
@@ -1260,6 +1387,7 @@ class _MyAppState extends State<MyApp> {
                 ),
               ),
               Positioned(
+                key: _portafolioKey,
                 top: 3800,
                 left: 20,
                 right: 20,
@@ -1519,7 +1647,7 @@ class _MyAppState extends State<MyApp> {
 
                       // Descripción o enlaces
                       Text(
-                        'Consultoría en innovación, desarrollo tecnológico y soluciones digitales personalizadas',
+                        'Brindamos soluciones de innovación y desarrollo a medida, junto a una red de expertos LATAM',
                         style: TextStyle(
                           fontSize: 14,
                           color: Colors.grey.shade400,
@@ -1649,21 +1777,22 @@ class _MyAppState extends State<MyApp> {
                                   color: Colors.white30,
                                 )),
                             TextSpan(
-                              text: 'NPT Solutions',
+                              text: 'NPT Solutions\n',
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
-                            TextSpan(
-                                text: '. Designed By ',
-                                style: TextStyle(
-                                  fontWeight: FontWeight.w100,
-                                  color: Colors.white30,
-                                )),
-                            TextSpan(
-                              text: 'Angel Meza\n',
-                              style: TextStyle(fontWeight: FontWeight.w500),
-                            ),
+                            // TextSpan(
+                            //     text: '. Designed By ',
+                            //     style: TextStyle(
+                            //       fontWeight: FontWeight.w100,
+                            //       color: Colors.white30,
+                            //     )),
+                            // TextSpan(
+                            //   text: 'Angel Meza\n',
+                            //   style: TextStyle(fontWeight: FontWeight.w500),
+                            // ),
+
                             TextSpan(
                               text: 'Privacy Policy',
                               style: TextStyle(
