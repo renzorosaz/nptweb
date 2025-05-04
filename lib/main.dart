@@ -12,14 +12,63 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  final PageController _pageController = PageController(viewportFraction: 0.85);
+  final PageController _pageController = PageController(viewportFraction: 0.92);
+  final PageController _pageControllerPortafolio =
+      PageController(viewportFraction: 0.85);
+
   int _currentIndex = 0;
+  int _currentIndexPortafolio = 0;
 
   final logos = [
     'assets/logos/open.png',
     'assets/logos/stef.png',
     'assets/logos/kal.png',
     'assets/logos/miski.png',
+  ];
+  final partners = [
+    'assets/partners/aws.png',
+    'assets/partners/figma.png',
+    'assets/partners/flutter.png',
+    'assets/partners/python.png',
+    'assets/partners/whatsapp.png',
+  ];
+
+  final portafolio = [
+    {
+      'imagen': 'assets/portafolio/aw_1.png',
+      'titulo': 'GreenPlace - Catálogo Digital',
+      'descripcion': 'Aplicación móvil que permite a negocios mostrar su catálogo de productos de forma digital, ordenada y accesible desde cualquier dispositivo.',
+    },
+    {
+      'imagen': 'assets/portafolio/aw_2.png',
+      'titulo': 'FuchiGol - Partidos Amistosos',
+      'descripcion': 'Plataforma móvil para conectar jugadores y organizar partidos de fútbol recreativo de forma rápida, geolocalizada y colaborativa.',
+    },
+    {
+      'imagen': 'assets/portafolio/aw_3.png',
+      'titulo': 'Rutus - Reservas de Excursiones',
+      'descripcion': 'App para la gestión de reservas de actividades turísticas y excursiones, con integración de pasarela de pago segura y confirmación automática.',
+    },
+    {
+      'imagen': 'assets/portafolio/aw_4.png',
+      'titulo': 'Mi Negocio App',
+      'descripcion': 'Aplicación con geolocalización integrada para ayudar a emprendedores a gestionar sus negocios locales, promociones y presencia digital.',
+    },
+    {
+      'imagen': 'assets/portafolio/aw_5.png',
+      'titulo': 'Alerta de Métricas - Monitoreo Inteligente',
+      'descripcion': 'App de visualización de indicadores clave de negocio (KPIs) mediante gráficos dinámicos y alertas automáticas en tiempo real.',
+    },
+    {
+      'imagen': 'assets/portafolio/aw_6.png',
+      'titulo': 'ERP Lite - Gestión Empresarial',
+      'descripcion': 'Aplicación ligera para pequeñas empresas, que permite controlar inventarios, ventas, finanzas y operaciones desde el celular',
+    },
+    {
+      'imagen': 'assets/portafolio/aw_7.png',
+      'titulo': 'ReservApp - Sistema de Reservas',
+      'descripcion': 'Herramienta móvil diseñada para la gestión eficiente de reservas en negocios de servicios, como salones, clínicas o actividades recreativas.',
+    },
   ];
 
   final testimonials = [
@@ -42,43 +91,10 @@ class _MyAppState extends State<MyApp> {
           '"Como empresa distribuidora de medicamentos, necesitábamos validar un nuevo modelo digital. Con su ayuda, creamos un marketplace funcional que nos permitió testear y validar la demanda en tiempo récord."',
     },
   ];
-  // final List<Widget> _slides = [
-  //   // Replace with your actual slide widgets
-  //   Container(
-  //     color: Colors.blue.shade100,
-  //     child: Center(child: Text('Slide 1', style: TextStyle(fontSize: 24))),
-  //   ),
-  //   Container(
-  //     color: Colors.green.shade100,
-  //     child: Center(child: Text('Slide 2', style: TextStyle(fontSize: 24))),
-  //   ),
-  //   Container(
-  //     color: Colors.orange.shade100,
-  //     child: Center(child: Text('Slide 3', style: TextStyle(fontSize: 24))),
-  //   ),
-  // ];
-  // void _nextPage() {
-  //   _pageController.nextPage(
-  //     duration: Duration(milliseconds: 300),
-  //     curve: Curves.easeInOut,
-  //   );
-  // }
-
-  // void _previousPage() {
-  //   _pageController.previousPage(
-  //     duration: Duration(milliseconds: 300),
-  //     curve: Curves.easeInOut,
-  //   );
-  // }
 
   @override
   void initState() {
     super.initState();
-    // _pageController.addListener(() {
-    //   setState(() {
-    //     _currentPage = _pageController.page?.round() ?? 0;
-    //   });
-    // });
   }
 
   @override
@@ -108,7 +124,7 @@ class _MyAppState extends State<MyApp> {
             .black, // Set the background color of the entire screen to black
         body: SingleChildScrollView(
           child: Container(
-            height: 4400, // o el tamaño que necesites
+            height: 5400, // o el tamaño que necesites
             child: Stack(children: [
               Positioned(
                 top: -270,
@@ -484,24 +500,6 @@ class _MyAppState extends State<MyApp> {
                               ],
                             ),
                           ),
-
-                          // Botones
-                          // Center(
-                          //   child: SizedBox(
-                          //     width: 340,
-                          //     height: 340, // ajusta según necesidad
-                          //     child: // Imagen con zoom
-                          //         Positioned.fill(
-                          //       child: Transform.scale(
-                          //         scale: 1.7,
-                          //         child: Image.asset(
-                          //           'assets/images/apps.png',
-                          //           fit: BoxFit.cover,
-                          //         ),
-                          //       ),
-                          //     ),
-                          //   ),
-                          // )
                         ],
                       ),
                     ),
@@ -943,9 +941,8 @@ class _MyAppState extends State<MyApp> {
                   ),
                 ),
               ),
-
               Positioned(
-                top: 2790, // Ajusta la posición del contenido
+                top: 2880, // Ajusta la posición del contenido
                 left: 0,
                 right: 0,
                 child: Column(
@@ -1164,96 +1161,228 @@ class _MyAppState extends State<MyApp> {
                   ],
                 ),
               ),
-              //FIN DE LISTA DE PASOS
-              // GestureDetector(
-              //   onHorizontalDragStart: (details) {
-              //     _dragStartX = details.localPosition.dx;
-              //     _dragOffset = 0;
-              //   },
-              //   onHorizontalDragUpdate: (details) {
-              //     setState(() {
-              //       _dragOffset = details.localPosition.dx - _dragStartX;
-              //     });
-              //   },
-              //   onHorizontalDragEnd: (details) {
-              //     if (_dragOffset > 50) {
-              //       _previousPage();
-              //     } else if (_dragOffset < -50) {
-              //       _nextPage();
-              //     }
-              //     setState(() {
-              //       _dragOffset = 0;
-              //     });
-              //   },
-              //   child: Stack(
-              //     alignment: Alignment.bottomCenter,
-              //     children: [
-              //       PageView.builder(
-              //         controller: _pageController,
-              //         itemCount: _slides.length,
-              //         itemBuilder: (context, index) {
-              //           return AnimatedBuilder(
-              //             animation: _pageController,
-              //             builder: (context, child) {
-              //               double value = 1.0;
-              //               if (_pageController.position.haveDimensions) {
-              //                 value = _pageController.page! - index;
-              //                 value =
-              //                     (1 - (value.abs() * 0.3)).clamp(0.0, 1.0);
-              //               }
-              //               return Center(
-              //                 child: SizedBox(
-              //                   height: Curves.easeOut.transform(value) *
-              //                       400, // Adjust height
-              //                   width: Curves.easeOut.transform(value) *
-              //                       MediaQuery.of(context).size.width *
-              //                       0.8, // Adjust width
-              //                   child: child,
-              //                 ),
-              //               );
-              //             },
-              //             child: _slides[index],
-              //           );
-              //         },
-              //         onPageChanged: (index) {
-              //           setState(() {
-              //             _currentPage = index;
-              //           });
-              //         },
-              //         physics:
-              //             NeverScrollableScrollPhysics(), // Disable default scrolling
-              //       ),
-              //       Padding(
-              //         padding: const EdgeInsets.all(16.0),
-              //         child: Row(
-              //           mainAxisAlignment: MainAxisAlignment.center,
-              //           children: List.generate(
-              //             _slides.length,
-              //             (index) => Padding(
-              //               padding:
-              //                   const EdgeInsets.symmetric(horizontal: 8.0),
-              //               child: GestureDetector(
-              //                 onTap: () => _pageController.animateToPage(
-              //                   index,
-              //                   duration: Duration(milliseconds: 300),
-              //                   curve: Curves.easeInOut,
-              //                 ),
-              //                 child: CircleAvatar(
-              //                   radius: 6.0,
-              //                   backgroundColor: _currentPage == index
-              //                       ? Colors.blueAccent
-              //                       : Colors.grey,
-              //                 ),
-              //               ),
-              //             ),
-              //           ),
-              //         ),
-              //       ),
-              //     ],
-              //   ),
-              // )
               Positioned(
-                top: 3500,
+                top: 3600, // Ajusta la posición del contenido
+                left: 0,
+                right: 0,
+                child: Column(
+                  children: [
+                    Container(
+                      width: 320,
+                      child: ShaderMask(
+                        shaderCallback: (bounds) => LinearGradient(
+                          colors: [Colors.white, Colors.grey],
+                          begin: Alignment.centerLeft,
+                          end: Alignment.centerRight,
+                        ).createShader(bounds),
+                        child: Text(
+                          'Nuestros partners',
+                          style: TextStyle(
+                            fontSize: 28,
+                            fontFamily: 'NBInternationalPro',
+                            fontWeight: FontWeight.w900, // Ultrabold
+                            color: Colors
+                                .white, // Asegúrate de que el texto sea legible
+                          ),
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 100, // Set the explicit height for the carousel
+                      child: Stack(
+                        children: [
+                          // The ListView for logos
+                          ListView.separated(
+                            scrollDirection: Axis.horizontal,
+                            physics:
+                                const BouncingScrollPhysics(), // For better UX
+                            padding: const EdgeInsets.symmetric(horizontal: 16),
+                            itemCount: partners.length,
+                            itemBuilder: (context, index) {
+                              return Container(
+                                width: 90, // fixed or dynamic width
+                                child: Image.asset(
+                                  partners[index],
+                                  fit: BoxFit.contain,
+                                  height: 15,
+                                ),
+                              );
+                            },
+
+                            separatorBuilder: (_, __) =>
+                                const SizedBox(width: 32),
+                          ),
+                          // Left gradient mask
+                          Positioned(
+                            left: 0,
+                            top: 0,
+                            bottom: 0,
+                            child: Container(
+                              width:
+                                  50, // Adjust this width for the gradient effect
+                              decoration: BoxDecoration(
+                                gradient: LinearGradient(
+                                  colors: [
+                                    Colors.black.withOpacity(1),
+                                    Colors.black.withOpacity(0.7),
+                                  ],
+                                  begin: Alignment.centerLeft,
+                                  end: Alignment.centerRight,
+                                ),
+                              ),
+                            ),
+                          ),
+                          // Right gradient mask
+                          Positioned(
+                            right: 0,
+                            top: 0,
+                            bottom: 0,
+                            child: Container(
+                              width:
+                                  50, // Adjust this width for the gradient effect
+                              decoration: BoxDecoration(
+                                gradient: LinearGradient(
+                                  colors: [
+                                    Colors.black.withOpacity(1),
+                                    Colors.black.withOpacity(0.7),
+                                  ],
+                                  begin: Alignment.centerRight,
+                                  end: Alignment.centerLeft,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    )
+                  ],
+                ),
+              ),
+              Positioned(
+                top: 3800,
+                left: 20,
+                right: 20,
+                child: Column(
+                  children: [
+                    Container(
+                      width: 320,
+                      child: ShaderMask(
+                        shaderCallback: (bounds) => LinearGradient(
+                          colors: [Colors.white, Colors.grey],
+                          begin: Alignment.centerLeft,
+                          end: Alignment.centerRight,
+                        ).createShader(bounds),
+                        child: Text(
+                          'Portafolio',
+                          style: TextStyle(
+                            fontSize: 28,
+                            fontFamily: 'NBInternationalPro',
+                            fontWeight: FontWeight.w900, // Ultrabold
+                            color: Colors
+                                .white, // Asegúrate de que el texto sea legible
+                          ),
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
+                    ),
+                    Container(
+                      width: 320,
+                      child: Text(
+                        'Nuestros proyectos más destacados',
+                        style: TextStyle(
+                          fontSize: 14,
+                          fontFamily: 'NBInternationalPro',
+                          fontWeight: FontWeight.normal, // Ultrabold
+                          color: const Color.fromARGB(255, 200, 200,
+                              200), // Asegúrate de que el texto sea legible
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                    const SizedBox(height: 16),
+                    SizedBox(
+                      height: 430,
+                      child: PageView.builder(
+                        controller: _pageController,
+                        itemCount: portafolio.length,
+                        onPageChanged: (index) {
+                          setState(() => _currentIndexPortafolio = index);
+                        },
+                        itemBuilder: (context, index) {
+                          final product = portafolio[index];
+                          return Column(
+                            crossAxisAlignment:
+                                CrossAxisAlignment.center, // Imagen centrada
+
+                            children: [
+                              Expanded(
+                                child: Image.asset(
+                                  product['imagen']!,
+                                  fit: BoxFit.contain,
+                                  height: 15,
+                                ),
+                              ),
+                              SizedBox(height: 10),
+                              Container(
+                                width: double
+                                    .infinity, // Ocupa todo el ancho para alinear a la izquierda
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 16),
+
+                                child: Text(
+                                  product['titulo']!,
+                                  style: TextStyle(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.white,
+                                  ),
+                                  textAlign: TextAlign.start,
+                                ),
+                              ),
+                              const SizedBox(height: 5),
+                              Container(
+                                width: double.infinity,
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 16),
+                                child: Text(
+                                  product['descripcion']!,
+                                  style: TextStyle(
+                                    fontSize: 12,
+                                    color: Colors.grey[300],
+                                  ),
+                                  textAlign: TextAlign.start,
+                                ),
+                              ),
+                            ],
+                          );
+                        },
+                      ),
+                    ),
+                    const SizedBox(height: 23),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: List.generate(
+                        portafolio.length,
+                        (index) => AnimatedContainer(
+                          duration: const Duration(milliseconds: 300),
+                          margin: const EdgeInsets.symmetric(horizontal: 6),
+                          width: _currentIndexPortafolio == index ? 18 : 8,
+                          height: 8,
+                          decoration: BoxDecoration(
+                            color: _currentIndexPortafolio == index
+                                ? Colors.grey
+                                : Colors.grey[600],
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Positioned(
+                top: 4400,
                 left: 20,
                 right: 20,
                 child: Column(
@@ -1283,7 +1412,7 @@ class _MyAppState extends State<MyApp> {
                     SizedBox(
                       height: 220,
                       child: PageView.builder(
-                        controller: _pageController,
+                        controller: _pageControllerPortafolio,
                         itemCount: testimonials.length,
                         onPageChanged: (index) {
                           setState(() => _currentIndex = index);
@@ -1363,203 +1492,198 @@ class _MyAppState extends State<MyApp> {
                   ],
                 ),
               ),
-              Stack(children: [
-                // ... otros widgets principales de la pantalla
-
-                // Pie de página
-                Positioned(
-                  top: 3900,
-                  left: 40,
-                  right: 40,
-                  child: Container(
-                    // decoration: BoxDecoration(
-                    //   color: const Color(0xFF1A1A1A),
-                    //   borderRadius: BorderRadius.circular(16),
-                    //   border: Border.all(color: Colors.grey.shade800),
-                    // ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        // Logo o título
-                        Divider(color: Colors.grey.shade700),
-                        Text(
-                          'NPT Solutions',
-                          style: TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white,
-                          ),
+              Positioned(
+                top: 4800,
+                left: 40,
+                right: 40,
+                child: Container(
+                  // decoration: BoxDecoration(
+                  //   color: const Color(0xFF1A1A1A),
+                  //   borderRadius: BorderRadius.circular(16),
+                  //   border: Border.all(color: Colors.grey.shade800),
+                  // ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      // Logo o título
+                      Divider(color: Colors.grey.shade700),
+                      Text(
+                        'NPT Solutions',
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
                         ),
-                        const SizedBox(height: 12),
+                      ),
+                      const SizedBox(height: 12),
 
-                        // Descripción o enlaces
-                        Text(
-                          'Consultoría en innovación, desarrollo tecnológico y soluciones digitales personalizadas',
-                          style: TextStyle(
-                            fontSize: 14,
-                            color: Colors.grey.shade400,
-                          ),
+                      // Descripción o enlaces
+                      Text(
+                        'Consultoría en innovación, desarrollo tecnológico y soluciones digitales personalizadas',
+                        style: TextStyle(
+                          fontSize: 14,
+                          color: Colors.grey.shade400,
                         ),
-                        const SizedBox(height: 20),
+                      ),
+                      const SizedBox(height: 20),
 
-                        // Enlaces de navegación
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Row(
-                              children: [
-                                Icon(Icons.location_on, color: Colors.white),
-                                const SizedBox(width: 8),
-                                Text(
-                                  'San Borja, Lima, PERU',
-                                  style: TextStyle(
-                                      fontFamily: 'NBInternationalPro',
-                                      color: Colors.white54,
-                                      fontSize: 12),
-                                ),
-                              ],
-                            ),
-                            const SizedBox(height: 12),
-                            Row(
-                              children: [
-                                Icon(Icons.person, color: Colors.white),
-                                const SizedBox(width: 8),
-                                Text(
-                                  'Renzo Rosas',
-                                  style: TextStyle(
-                                      fontFamily: 'NBInternationalPro',
-                                      color: Colors.white54,
-                                      fontSize: 12),
-                                ),
-                              ],
-                            ),
-                            const SizedBox(height: 12),
-                            Row(
-                              children: [
-                                Icon(Icons.phone, color: Colors.white),
-                                const SizedBox(width: 8),
-                                Text(
-                                  '+51 972 696 048',
-                                  style: TextStyle(
-                                      fontFamily: 'NBInternationalPro',
-                                      color: Colors.white54,
-                                      fontSize: 12),
-                                ),
-                              ],
-                            ),
-                            const SizedBox(height: 12),
-                            Row(
-                              children: [
-                                Icon(Icons.email, color: Colors.white),
-                                const SizedBox(width: 8),
-                                Text(
-                                  'nptlatamsolutions@gmail.com',
-                                  style: TextStyle(
-                                      fontFamily: 'NBInternationalPro',
-                                      color: Colors.white54,
-                                      fontSize: 12),
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-
-                        const SizedBox(height: 20),
-                        Text(
-                          'Redes Sociales',
-                          style: TextStyle(
-                            fontSize: 14,
-                            color: Colors.white,
-                          ),
-                        ),
-                        const SizedBox(height: 5),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            GestureDetector(
-                              onTap: () {
-                                _launchLinkedIn(context);
-                              },
-                              child: Text(
-                                'LinkedIn',
+                      // Enlaces de navegación
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Row(
+                            children: [
+                              Icon(Icons.location_on, color: Colors.white),
+                              const SizedBox(width: 8),
+                              Text(
+                                'San Borja, Lima, PERU',
                                 style: TextStyle(
                                     fontFamily: 'NBInternationalPro',
                                     color: Colors.white54,
                                     fontSize: 12),
-                              ),
-                            ),
-                            const SizedBox(height: 5),
-                            GestureDetector(
-                              onTap: () {
-                                _launchInstagram(context);
-                              },
-                              child: Text(
-                                'Instagram',
-                                style: TextStyle(
-                                    fontFamily: 'NBInternationalPro',
-                                    color: Colors.white54,
-                                    fontSize: 12),
-                              ),
-                            ),
-                          ],
-                        ),
-                        // // Derechos reservados
-                        // Divider(color: Colors.grey.shade700),
-                        const SizedBox(height: 25),
-
-                        RichText(
-                          textAlign: TextAlign.start,
-                          text: TextSpan(
-                            style: const TextStyle(
-                              fontSize: 12,
-                              color: Colors.white,
-                              fontFamily:
-                                  'NBInternationalPro', // Replace if needed
-                            ),
-                            children: const [
-                              TextSpan(
-                                  text: 'Made by ',
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.w100,
-                                    color: Colors.white30,
-                                  )),
-                              TextSpan(
-                                text: 'NPT Solutions',
-                                style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                              TextSpan(
-                                  text: '. Designed By ',
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.w100,
-                                    color: Colors.white30,
-                                  )),
-                              TextSpan(
-                                text: 'Angel Meza\n',
-                                style: TextStyle(fontWeight: FontWeight.w500),
-                              ),
-                              TextSpan(
-                                text: 'Privacy Policy',
-                                style: TextStyle(
-                                  decoration: TextDecoration.underline,
-                                ),
-                              ),
-                              TextSpan(text: '    '), // Spacer
-                              TextSpan(
-                                text: 'Terms of Service',
-                                style: TextStyle(
-                                  decoration: TextDecoration.underline,
-                                ),
                               ),
                             ],
                           ),
+                          const SizedBox(height: 12),
+                          Row(
+                            children: [
+                              Icon(Icons.person, color: Colors.white),
+                              const SizedBox(width: 8),
+                              Text(
+                                'Renzo Rosas',
+                                style: TextStyle(
+                                    fontFamily: 'NBInternationalPro',
+                                    color: Colors.white54,
+                                    fontSize: 12),
+                              ),
+                            ],
+                          ),
+                          const SizedBox(height: 12),
+                          Row(
+                            children: [
+                              Icon(Icons.phone, color: Colors.white),
+                              const SizedBox(width: 8),
+                              Text(
+                                '+51 972 696 048',
+                                style: TextStyle(
+                                    fontFamily: 'NBInternationalPro',
+                                    color: Colors.white54,
+                                    fontSize: 12),
+                              ),
+                            ],
+                          ),
+                          const SizedBox(height: 12),
+                          Row(
+                            children: [
+                              Icon(Icons.email, color: Colors.white),
+                              const SizedBox(width: 8),
+                              Text(
+                                'nptlatamsolutions@gmail.com',
+                                style: TextStyle(
+                                    fontFamily: 'NBInternationalPro',
+                                    color: Colors.white54,
+                                    fontSize: 12),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+
+                      const SizedBox(height: 20),
+                      Text(
+                        'Redes Sociales',
+                        style: TextStyle(
+                          fontSize: 14,
+                          color: Colors.white,
                         ),
-                      ],
-                    ),
+                      ),
+                      const SizedBox(height: 5),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          GestureDetector(
+                            onTap: () {
+                              _launchLinkedIn(context);
+                            },
+                            child: Text(
+                              'LinkedIn',
+                              style: TextStyle(
+                                  fontFamily: 'NBInternationalPro',
+                                  color: Colors.white54,
+                                  fontSize: 12),
+                            ),
+                          ),
+                          const SizedBox(height: 5),
+                          GestureDetector(
+                            onTap: () {
+                              _launchInstagram(context);
+                            },
+                            child: Text(
+                              'Instagram',
+                              style: TextStyle(
+                                  fontFamily: 'NBInternationalPro',
+                                  color: Colors.white54,
+                                  fontSize: 12),
+                            ),
+                          ),
+                        ],
+                      ),
+                      // // Derechos reservados
+                      // Divider(color: Colors.grey.shade700),
+                      const SizedBox(height: 25),
+
+                      RichText(
+                        textAlign: TextAlign.start,
+                        text: TextSpan(
+                          style: const TextStyle(
+                            fontSize: 12,
+                            color: Colors.white,
+                            fontFamily:
+                                'NBInternationalPro', // Replace if needed
+                          ),
+                          children: const [
+                            TextSpan(
+                                text: 'Made by ',
+                                style: TextStyle(
+                                  fontWeight: FontWeight.w100,
+                                  color: Colors.white30,
+                                )),
+                            TextSpan(
+                              text: 'NPT Solutions',
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            TextSpan(
+                                text: '. Designed By ',
+                                style: TextStyle(
+                                  fontWeight: FontWeight.w100,
+                                  color: Colors.white30,
+                                )),
+                            TextSpan(
+                              text: 'Angel Meza\n',
+                              style: TextStyle(fontWeight: FontWeight.w500),
+                            ),
+                            TextSpan(
+                              text: 'Privacy Policy',
+                              style: TextStyle(
+                                decoration: TextDecoration.underline,
+                              ),
+                            ),
+                            TextSpan(text: '    '), // Spacer
+                            TextSpan(
+                              text: 'Terms of Service',
+                              style: TextStyle(
+                                decoration: TextDecoration.underline,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
                   ),
-                )
-              ])
+                ),
+              )
             ]),
           ),
         ),

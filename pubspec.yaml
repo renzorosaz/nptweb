@@ -60,7 +60,19 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-  - assets/images/fondo_celulares.png
+  - assets/portafolio/aw_1.png
+  - assets/portafolio/aw_2.png
+  - assets/portafolio/aw_3.png
+  - assets/portafolio/aw_4.png
+  - assets/portafolio/aw_5.png
+  - assets/portafolio/aw_6.png
+  - assets/portafolio/aw_7.png
+  - assets/portafolio/aw_8.png
+  - assets/partners/aws.png
+  - assets/partners/figma.png
+  - assets/partners/flutter.png
+  - assets/partners/python.png
+  - assets/partners/whatsapp.png
   - assets/images/fondo_naranja.png
   - assets/images/fondo_lineas.png
   - assets/images/apps.png
