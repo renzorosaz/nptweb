@@ -242,7 +242,7 @@ class _MyAppState extends State<MyApp> {
         body: SingleChildScrollView(
           controller: _scrollController,
           child: Container(
-            height: 5200, // o el tamaño que necesites
+            height: 5300, // o el tamaño que necesites
             child: Stack(children: [
               Positioned(
                 top: -270,
