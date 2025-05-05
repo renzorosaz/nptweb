@@ -237,13 +237,13 @@ class _MyAppState extends State<MyApp> {
             ],
           ),
         ),
-        backgroundColor: Colors
-            .black, // Set the background color of the entire screen to black
+        backgroundColor: Colors.black, // Set the background color of the entire screen to black
         body: SingleChildScrollView(
           controller: _scrollController,
           child: Container(
             height: 5300, // o el tamaño que necesites
-            child: Stack(children: [
+            child: Stack(
+              children: [
               Positioned(
                 top: -270,
                 right: 0,
