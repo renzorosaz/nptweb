@@ -329,6 +329,7 @@ class _MyAppState extends State<MyApp> {
                         'assets/images/fondo_lineas.png', // Reemplaza con la ruta de tu imagen
                       ),
                     ),
+                    
                     Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
